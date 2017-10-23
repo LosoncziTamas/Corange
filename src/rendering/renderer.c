@@ -2023,8 +2023,8 @@ static void render_ssao(renderer* dr) {
   int width = graphics_viewport_width();
   int height = graphics_viewport_height();
   
-  int ssaowidth  = width  * option_graphics_int(asset_hndl_ptr(&dr->options), "ssao", 1, 0.5, 0.25);
-  int ssaoheight = height * option_graphics_int(asset_hndl_ptr(&dr->options), "ssao", 1, 0.5, 0.25);
+  int ssaowidth  = width  * option_graphics_float(asset_hndl_ptr(&dr->options), "ssao", 1, 0.5, 0.25);
+  int ssaoheight = height * option_graphics_float(asset_hndl_ptr(&dr->options), "ssao", 1, 0.5, 0.25);
   
   glBindFramebuffer(GL_FRAMEBUFFER, dr->ssao_fbo);
   glViewport(0, 0, ssaowidth, ssaoheight);

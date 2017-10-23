@@ -1,7 +1,7 @@
 #include "cengine.h"
 
 fpath P(const char* path) {
-  fpath p;
+  fpath p = {};
   
   if (unlikely(strlen(path) >= PATH_MAX)) {
     error("Path too long '%s'", path);

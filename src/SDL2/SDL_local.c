@@ -21,7 +21,7 @@ void SDL_PathFullName(char* dst, const char* path) {
   GetFullPathName(path, MAX_PATH, dst, NULL);
 }
 
-#elif __unix__
+#elif defined(__unix__) || defined(__APPLE__)
 
 void SDL_PathFullName(char* dst, const char* path) {
   char* ret = realpath(path, dst);
@@ -238,11 +238,6 @@ bool SDL_GL_ExtensionFuncionLoaded(void* function) {
   }
 }
 
-#ifndef __unix__
-GLACTIVETEXTUREFN glActiveTexture = NULL;
-GLCOMPRESSEDTEXIMAGE2DFN glCompressedTexImage2D = NULL;
-GLTEXIMAGE3DFN glTexImage3D = NULL;
-#endif
 GLCREATESHADERFN glCreateShader = NULL;
 GLCREATEPROGRAMFN glCreateProgram = NULL;
 GLSHADERSOURCEFN glShaderSource = NULL;
@@ -364,11 +359,6 @@ void SDL_GL_LoadExtensions() {
   /* Textures */
   
   SDL_GL_LoadExtension(GLGENERATEMIPMAPFN, glGenerateMipmap);
-  #ifndef __unix__
-  SDL_GL_LoadExtension(GLACTIVETEXTUREFN, glActiveTexture);
-  SDL_GL_LoadExtension(GLCOMPRESSEDTEXIMAGE2DFN, glCompressedTexImage2D);
-  SDL_GL_LoadExtension(GLTEXIMAGE3DFN, glTexImage3D);
-  #endif
   
   /* Buffers */
   
@@ -409,7 +399,7 @@ void SDL_GL_LoadExtensions() {
   
 }
 
-#ifdef __unix__
+#if defined(__unix__) || defined(__APPLE__)
 
 void SDL_PrintStackTrace() {
 }
