@@ -112,11 +112,6 @@ typedef void (APIENTRY * GLPATCHPARAMETERFVFN)(GLenum pname, const GLfloat* valu
 
 typedef void (APIENTRY * GLBROKENEXTENSIONFN)();
 
-#ifndef __unix__
-  extern GLACTIVETEXTUREFN glActiveTexture;
-  extern GLCOMPRESSEDTEXIMAGE2DFN glCompressedTexImage2D;
-  extern GLTEXIMAGE3DFN glTexImage3D;
-#endif
 extern GLCREATESHADERFN glCreateShader;
 extern GLCREATEPROGRAMFN glCreateProgram;
 extern GLSHADERSOURCEFN glShaderSource;
@@ -180,7 +175,6 @@ extern GLBROKENEXTENSIONFN glBrokenExtension;
 
 /* Extension Constants - Found these from glew and Google */
 
-#define GL_TABLE_TOO_LARGE 0x8031
 #define GL_INVALID_FRAMEBUFFER_OPERATION 0x0506
 
 #define GL_SHADING_LANGUAGE_VERSION 0x8B8C
@@ -249,17 +243,12 @@ extern GLBROKENEXTENSIONFN glBrokenExtension;
 #define GL_COMPRESSED_RGBA_S3TC_DXT5 0x83F3
 
 #define GL_UNSIGNED_SHORT_1_5_5_5_REV 0x8366
-#define GL_UNSIGNED_SHORT_5_6_5 0x8363
 #define GL_DEPTH_COMPONENT24 0x81A6
 
-#define GL_CLAMP_TO_EDGE 0x812F
-#define GL_TEXTURE_WRAP_R 0x8072
 #define GL_MIRRORED_REPEAT 0x8370
-#define GL_TEXTURE_DEPTH 0x8071
 #define GL_TEXTURE_MAX_ANISOTROPY 0x84FE
 #define GL_MAX_TEXTURE_MAX_ANISOTROPY 0x84FF
 #define GL_GENERATE_MIPMAP 0x8191
-#define GL_TEXTURE_MAX_LEVEL 0x813D
 
 #define GL_TEXTURE0 0x84C0
 #define GL_TEXTURE_3D 0x806F
