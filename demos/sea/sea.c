@@ -16,6 +16,14 @@ static cmesh* test_cmesh;
 static mat4 test_cmesh_world;
 static mat3 test_cmesh_world_normal;
 
+collision collision_test_ellipsoid(void* x, vec3* position, vec3* velocity) {
+  return ellipsoid_collide_mesh(test_ellipsoid, *velocity, test_cmesh, test_cmesh_world, test_cmesh_world_normal);
+}
+
+collision collision_camera(void* x, vec3* position, vec3* velocity) {
+  return sphere_collide_mesh(sphere_new(*position, 0.25), *velocity, test_cmesh, test_cmesh_world, test_cmesh_world_normal);
+}
+
 void sea_init() {
   
   graphics_viewport_set_title("Sea");
@@ -120,10 +128,6 @@ void sea_update() {
   
   /* Collision Detection and response routine */
   
-  collision collision_test_ellipsoid(void* x, vec3* position, vec3* velocity) {
-    return ellipsoid_collide_mesh(test_ellipsoid, *velocity, test_cmesh, test_cmesh_world, test_cmesh_world_normal);
-  }
-  
   renderer_add(g_dr, render_object_ellipsoid(test_ellipsoid));
   renderer_add(g_dr, render_object_static(entity_get("corvette")));
   
@@ -181,10 +185,6 @@ void sea_event(SDL_Event e) {
   c->target = target;
   
   vec3 velocity = vec3_sub(position, c->position);
-  
-  collision collision_camera(void* x, vec3* position, vec3* velocity) {
-    return sphere_collide_mesh(sphere_new(*position, 0.25), *velocity, test_cmesh, test_cmesh_world, test_cmesh_world_normal);
-  }
   
   collision_response_slide(g_dr, &c->position, &velocity, collision_camera);
   

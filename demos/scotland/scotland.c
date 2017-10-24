@@ -12,6 +12,18 @@ static bool toggle_freecam = true;
 static bool loading_assets = false;
 //static SDL_GLContext* load_context = NULL;
 
+void on_freecam(ui_button* b, void* unused) {
+  toggle_freecam = !toggle_freecam;
+  
+  camera* cam = entity_get("camera");
+  landscape* world = entity_get("world");
+  
+  vec3 cam_dir = vec3_normalize(vec3_sub(cam->target, cam->position));
+  float height = landscape_height(world, vec2_new(cam->position.x, cam->position.z));
+  cam->position.y = height + 1;
+  cam->target = vec3_add(cam->position, cam_dir);
+}
+
 static int load_assets(void* unused) {
   
   //graphics_context_current(load_context);
@@ -81,18 +93,6 @@ void scotland_init() {
   ui_button_resize(freecam, vec2_new(65,25));
   ui_button_set_label(freecam, "freecam");
   ui_button_set_active(freecam, false);
-  
-  void on_freecam(ui_button* b, void* unused) {
-    toggle_freecam = !toggle_freecam;
-    
-    camera* cam = entity_get("camera");
-    landscape* world = entity_get("world");
-    
-    vec3 cam_dir = vec3_normalize(vec3_sub(cam->target, cam->position));
-    float height = landscape_height(world, vec2_new(cam->position.x, cam->position.z));
-    cam->position.y = height + 1;
-    cam->target = vec3_add(cam->position, cam_dir);
-  }
   
   ui_button_set_onclick(freecam, on_freecam);
   

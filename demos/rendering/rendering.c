@@ -3,6 +3,11 @@
 static int object_id = 0;
 renderer* dr = NULL;
 
+void onclick_piano() { object_id = 0; }
+void onclick_cello() { object_id = 1; }
+void onclick_imrod() { object_id = 2; }
+void onclick_dino()  { object_id = 3; }
+
 void rendering_init() {
   
   graphics_viewport_set_title("Renderers");
@@ -72,11 +77,6 @@ void rendering_init() {
   ui_button_move(dino, vec2_new(260, graphics_viewport_height() - 70));
   ui_button_resize(dino, vec2_new(40,25));
   ui_button_set_label(dino, "Dino");
-  
-  void onclick_piano() { object_id = 0; }
-  void onclick_cello() { object_id = 1; }
-  void onclick_imrod() { object_id = 2; }
-  void onclick_dino()  { object_id = 3; }
   
   ui_button_set_onclick(piano, onclick_piano);
   ui_button_set_onclick(cello, onclick_cello);

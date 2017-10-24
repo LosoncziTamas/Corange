@@ -64,6 +64,10 @@ static void reset_game() {
   new_game->active = false;
 }
 
+void on_newgame(ui_button* b, void* unused) {
+  reset_game();
+}
+
 void platformer_init() {
   
   /* Set the viewport title */
@@ -114,11 +118,6 @@ void platformer_init() {
   ui_button_move(new_game_but, vec2_new(365, 230));
   ui_button_resize(new_game_but, vec2_new(70, 25));
   ui_button_set_label(new_game_but, "New Game");
-  
-  
-  void on_newgame(ui_button* b, void* unused) {
-    reset_game();
-  }
   
   ui_button_set_onclick(new_game_but, on_newgame);
   

@@ -12,7 +12,7 @@ endif
 
 ifeq ($(findstring Darwin,$(PLATFORM)),Darwin)
 	OUT=$(DEMO)
-	LFLAGS= -lcorange -lGL -lSDL2main -lSDL2 -lSDL2_net -lSDL2_mixer
+	LFLAGS= -lcorange -lSDL2main -lSDL2 -lSDL2_net -lSDL2_mixer -framework OpenGL
 endif
 
 ifeq ($(findstring MINGW,$(PLATFORM)),MINGW)
