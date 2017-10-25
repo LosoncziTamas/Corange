@@ -63,3 +63,14 @@ install_win32: $(STATIC)
 install_win64: $(STATIC) $(DYNAMIC)
 	cp $(STATIC) C:/MinGW64/x86_64-w64-mingw32/lib/$(STATIC)
 	cp $(DYNAMIC) C:/MinGW64/x86_64-w64-mingw32/bin/$(DYNAMIC)
+
+ifeq ($(findstring MINGW,$(PLATFORM)),MINGW)
+ifndef PROGRAMFILES(x86)
+install: install_win32
+else
+install: install_win64
+endif
+
+else
+install: install_unix
+endif
