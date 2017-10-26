@@ -25,6 +25,13 @@ To compile on Linux you need to install SDL2. Then you should run "make"
     sudo apt-get install libsdl2-net-dev
     make
 
+To compile on MacOS you will need to use [Homebrew](https://brew.sh/) to install the Unix libraries
+
+    brew install sdl2
+    brew install sdl2_mixer
+    brew install sdl2_net
+    make
+
 
 Overview
 --------
